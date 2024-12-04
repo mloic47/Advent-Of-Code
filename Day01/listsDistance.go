@@ -22,22 +22,22 @@ func sortAndPrintListWithSort(list []int) []int {
 	return list
 }
 
-func sortAndPrintListWithForLoop(list []int) []int {
-	// iterate over the list
-	for i := 0; i < len(list); i++ {
-		// iterate over the list starting from the next element
-		for j := i + 1; j < len(list); j++ {
-			// if the current element is greater than the next element
-			if list[i] > list[j] {
-				// swap the elements
-				list[i], list[j] = list[j], list[i]
-			}
-		}
-	}
-	// print the list
-	fmt.Println(list)
-	return list
-}
+// func sortAndPrintListWithForLoop(list []int) []int {
+// 	// iterate over the list
+// 	for i := 0; i < len(list); i++ {
+// 		// iterate over the list starting from the next element
+// 		for j := i + 1; j < len(list); j++ {
+// 			// if the current element is greater than the next element
+// 			if list[i] > list[j] {
+// 				// swap the elements
+// 				list[i], list[j] = list[j], list[i]
+// 			}
+// 		}
+// 	}
+// 	// print the list
+// 	fmt.Println(list)
+// 	return list
+// }
 
 func main() {
 	// open the file
@@ -83,7 +83,7 @@ func main() {
 
 		// sort the lists in ascending order
 		fmt.Println("Sorted list 1:")
-		sortAndPrintListWithSort(list1)
+		
 		// if fmt.Sprint(sortAndPrintListWithSort(list1)) == fmt.Sprint(sortAndPrintListWithForLoop(list1)) {
 		// 	fmt.Println(sortAndPrintListWithSort(list1))
 		// 	fmt.Println(sortAndPrintListWithForLoop(list1))
@@ -95,10 +95,38 @@ func main() {
 		// 	}
 			// // sort and print list2
 		fmt.Println("Sorted list 2:")
-		sortAndPrintListWithSort(list2)
-
-		// create a third list that will hold difference of both list per index
 		
+
+		// sort the lists
+		sortedList1 := sortAndPrintListWithSort(list1)
+		sortedList2 := sortAndPrintListWithSort(list2)
+
+		// calculate the differences
+		var differences []int
+
+		for i := 0; i < len(sortedList1); i++ {
+			if sortedList1[i] > sortedList2[i] {
+				difference := sortedList1[i] - sortedList2[i]
+				differences = append(differences, difference)
+
+			} else {
+				difference := sortedList2[i] - sortedList1[i]
+				differences = append(differences, difference)
+				
+			}
+		}
+
+		// print the differences
+		fmt.Println("Differences:", differences)
+
+		// sum up differences
+		sum := 0;
+		for _, diff := range differences {
+			sum += diff
+		}
+
+		fmt.Println("Sum of differences:", sum)
+	
 
 	}
 }
