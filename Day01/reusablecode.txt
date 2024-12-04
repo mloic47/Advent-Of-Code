@@ -1,0 +1,27 @@
+// func sortAndPrintListWithForLoop(list []int) []int {
+// 	// iterate over the list
+// 	for i := 0; i < len(list); i++ {
+// 		// iterate over the list starting from the next element
+// 		for j := i + 1; j < len(list); j++ {
+// 			// if the current element is greater than the next element
+// 			if list[i] > list[j] {
+// 				// swap the elements
+// 				list[i], list[j] = list[j], list[i]
+// 			}
+// 		}
+// 	}
+// 	// print the list
+// 	fmt.Println(list)
+// 	return list
+// }
+
+// if fmt.Sprint(sortAndPrintListWithSort(list1)) == fmt.Sprint(sortAndPrintListWithForLoop(list1)) {
+		// 	fmt.Println(sortAndPrintListWithSort(list1))
+		// 	fmt.Println(sortAndPrintListWithForLoop(list1))
+		// 	// compare the results
+		// 	if fmt.Sprint(sortAndPrintListWithSort(list1)) == fmt.Sprint(sortAndPrintListWithForLoop(list1)) {
+		// 		fmt.Println("Both results are the same")
+		// 	} else {
+		// 		fmt.Println("Both results are different")
+		// 	}
+			// // sort and print list2

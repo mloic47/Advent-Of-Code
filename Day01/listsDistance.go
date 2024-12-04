@@ -22,22 +22,44 @@ func sortAndPrintListWithSort(list []int) []int {
 	return list
 }
 
-// func sortAndPrintListWithForLoop(list []int) []int {
-// 	// iterate over the list
-// 	for i := 0; i < len(list); i++ {
-// 		// iterate over the list starting from the next element
-// 		for j := i + 1; j < len(list); j++ {
-// 			// if the current element is greater than the next element
-// 			if list[i] > list[j] {
-// 				// swap the elements
-// 				list[i], list[j] = list[j], list[i]
-// 			}
-// 		}
-// 	}
-// 	// print the list
-// 	fmt.Println(list)
-// 	return list
-// }
+func countOccurences(slice []int, value int)int{
+	count := 0
+	for _, v := range slice {
+		if v == value {
+			count ++
+		}
+	}
+	return count
+}
+
+func listDifference (list1 []int, list2 []int) []int {
+	var differences []int
+	for i := 0; i < len(list1); i++ {
+		if list1[i] > list2[i] {
+			difference := list1[i] - list2[i]
+			differences = append(differences, difference)
+		} else {
+			difference := list2[i] - list1[i]
+			differences = append(differences, difference)
+		}
+	}
+	return differences
+}
+
+func sumSliceElement (slice []int) int {
+	sum := 0
+	for _, v := range slice {
+		sum += v
+	}
+	return sum
+}
+
+// func similarityScore  (list1 []int, list2 []int) []int {
+// 	var similarityScoreList []int
+// 	for i := 0; i < len(list1); i++ {
+// 		similarityScorePerIndex := 
+
+
 
 func main() {
 	// open the file
@@ -77,56 +99,34 @@ func main() {
 		list1 = append(list1, num1)
 		list2 = append(list2, num2)
 
-		// print the lists
-		fmt.Println("List 1:", list1)
-		fmt.Println("List 2:", list2)
-
-		// sort the lists in ascending order
-		fmt.Println("Sorted list 1:")
-		
-		// if fmt.Sprint(sortAndPrintListWithSort(list1)) == fmt.Sprint(sortAndPrintListWithForLoop(list1)) {
-		// 	fmt.Println(sortAndPrintListWithSort(list1))
-		// 	fmt.Println(sortAndPrintListWithForLoop(list1))
-		// 	// compare the results
-		// 	if fmt.Sprint(sortAndPrintListWithSort(list1)) == fmt.Sprint(sortAndPrintListWithForLoop(list1)) {
-		// 		fmt.Println("Both results are the same")
-		// 	} else {
-		// 		fmt.Println("Both results are different")
-		// 	}
-			// // sort and print list2
-		fmt.Println("Sorted list 2:")
-		
-
+	
 		// sort the lists
 		sortedList1 := sortAndPrintListWithSort(list1)
 		sortedList2 := sortAndPrintListWithSort(list2)
 
 		// calculate the differences
-		var differences []int
-
-		for i := 0; i < len(sortedList1); i++ {
-			if sortedList1[i] > sortedList2[i] {
-				difference := sortedList1[i] - sortedList2[i]
-				differences = append(differences, difference)
-
-			} else {
-				difference := sortedList2[i] - sortedList1[i]
-				differences = append(differences, difference)
-				
-			}
-		}
+		differences := listDifference(sortedList1, sortedList2)
 
 		// print the differences
 		fmt.Println("Differences:", differences)
 
 		// sum up differences
-		sum := 0;
-		for _, diff := range differences {
-			sum += diff
-		}
-
+		sum := sumSliceElement(differences)
 		fmt.Println("Sum of differences:", sum)
-	
-
+		
+		// calculating total similarity score
+		// take the number of list1
+		var similarityScoreList []int
+		for i := 0; i < len(sortedList1); i++ {
+			// count how many time the number appears in list2
+			count := countOccurences(sortedList2, list1[i])
+			similarityScore := list1[i] * count
+			similarityScoreList = append(similarityScoreList, similarityScore)
+			// print the similarity score list
+			// fmt.Println("Similarity score list:", similarityScoreList)
+		}
+		// sum up the similarity score
+		totalSimilarityScore := sumSliceElement(similarityScoreList)
+		fmt.Println("Total similarity score:", totalSimilarityScore)
 	}
 }
