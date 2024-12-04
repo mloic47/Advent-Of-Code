@@ -83,18 +83,22 @@ func main() {
 
 		// sort the lists in ascending order
 		fmt.Println("Sorted list 1:")
-		if fmt.Sprint(sortAndPrintListWithSort(list1)) == fmt.Sprint(sortAndPrintListWithForLoop(list1)) {
-			fmt.Println(sortAndPrintListWithSort(list1))
-			fmt.Println(sortAndPrintListWithForLoop(list1))
-			// compare the results
-			if fmt.Sprint(sortAndPrintListWithSort(list1)) == fmt.Sprint(sortAndPrintListWithForLoop(list1)) {
-				fmt.Println("Both results are the same")
-			} else {
-				fmt.Println("Both results are different")
-			}
+		sortAndPrintListWithSort(list1)
+		// if fmt.Sprint(sortAndPrintListWithSort(list1)) == fmt.Sprint(sortAndPrintListWithForLoop(list1)) {
+		// 	fmt.Println(sortAndPrintListWithSort(list1))
+		// 	fmt.Println(sortAndPrintListWithForLoop(list1))
+		// 	// compare the results
+		// 	if fmt.Sprint(sortAndPrintListWithSort(list1)) == fmt.Sprint(sortAndPrintListWithForLoop(list1)) {
+		// 		fmt.Println("Both results are the same")
+		// 	} else {
+		// 		fmt.Println("Both results are different")
+		// 	}
 			// // sort and print list2
-			fmt.Println("Sorted list 2:")
-			sortAndPrintListWithSort(list2)
-		}
+		fmt.Println("Sorted list 2:")
+		sortAndPrintListWithSort(list2)
+
+		// create a third list that will hold difference of both list per index
+		
+
 	}
 }
