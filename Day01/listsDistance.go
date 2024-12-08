@@ -1,9 +1,11 @@
 package main
+package day01
 
 import (
 	"bufio"
 	"fmt"
 	"os"
+	// "path/filepath"
 	"sort"
 	"strconv"
 	"strings"
@@ -54,10 +56,43 @@ func sumSliceElement (slice []int) int {
 	return sum
 }
 
-// func similarityScore  (list1 []int, list2 []int) []int {
-// 	var similarityScoreList []int
-// 	for i := 0; i < len(list1); i++ {
-// 		similarityScorePerIndex := 
+func similarityScore(list1 []int, list2 []int) []int {
+	var similarityScoreList []int
+	for i := 0; i < len(list1); i++ {
+		count := countOccurences(list2, list1[i])
+		similarityScore := list1[i] * count
+		similarityScoreList = append(similarityScoreList, similarityScore)
+	}
+	return similarityScoreList
+}
+
+// function that puts content of in file in a list
+func CopyFileContentToList(filePath string)[]string {
+	// open the file
+	file, err := os.Open(filePath)
+	// check if there is an error opening the file	
+	if err != nil {
+		fmt.Println("Error opening file:", err)
+		defer file.Close()
+		return nil
+	}
+	fmt.Println(file)
+	fmt.Println("File opened successfully")
+
+	// create a scanner to read the file
+	scanner := bufio.NewScanner(file)
+	// create a list to store the content of file
+	var list []string
+	// read the file line by line
+	for scanner.Scan() {
+		// read the line
+		line := scanner.Text()
+		// add the numbers to the lists
+		list = append(list, line)
+	}
+	return list 
+}
+
 
 
 
@@ -115,16 +150,7 @@ func main() {
 		fmt.Println("Sum of differences:", sum)
 		
 		// calculating total similarity score
-		// take the number of list1
-		var similarityScoreList []int
-		for i := 0; i < len(sortedList1); i++ {
-			// count how many time the number appears in list2
-			count := countOccurences(sortedList2, list1[i])
-			similarityScore := list1[i] * count
-			similarityScoreList = append(similarityScoreList, similarityScore)
-			// print the similarity score list
-			// fmt.Println("Similarity score list:", similarityScoreList)
-		}
+		similarityScoreList := similarityScore(sortedList1, sortedList2)
 		// sum up the similarity score
 		totalSimilarityScore := sumSliceElement(similarityScoreList)
 		fmt.Println("Total similarity score:", totalSimilarityScore)
