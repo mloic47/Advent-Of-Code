@@ -1,6 +1,9 @@
 package main
 
+import (
+	"fmt"
+)
+
 func main() {
-	// Call the function to read the input
-	// readInput()cd ..
+	fmt.Println("Hello, World!", Name)
 }
