@@ -1,5 +1,5 @@
 package main
-package day01
+// package day01
 
 import (
 	"bufio"
